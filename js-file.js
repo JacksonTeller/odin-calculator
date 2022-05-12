@@ -44,21 +44,48 @@ let clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', clear);
 
 //main function
-function calculate() {
-    //take the first number
-    let num1 = displayValue.innerText;
-    //take the operator
 
-    // let operator = 
+function giveSecondValue() {
+  numDisplay.innerText = '';
+  let num2 = numDisplay.innerText;
+  return num2;
 }
 
-let ops = document.querySelectorAll('.operators');
-
-
-let btns = document.querySelectorAll(".num-btns");
-btns.forEach(btn => btn.addEventListener("click", showNumbers));
-
+//Step1: take the first number and operator
+let multiplyBtn = document.querySelector('.multiply');
 let numDisplay = document.querySelector(".display");
-let displayValue = numDisplay.innerText;
+let equalBtn = document.querySelector('.equal');
 
-console.log(btns[0])
+const displArr = {};
+console.log(displArr);
+multiplyBtn.addEventListener('click', (e) => {
+  displArr['num1'] = numDisplay.innerText;
+  displArr['operator'] = e.target.className.slice(4);
+  clear();
+  console.log(displArr);
+});
+
+//Step2: take the second number and show the answer
+equalBtn.addEventListener('click', () => {
+  displArr['num2'] = numDisplay.innerText;
+  console.log(displArr);
+  numDisplay.innerText = operate(displArr['operator'], displArr['num1'], displArr['num2']);
+  console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
+})
+
+
+
+// let num2 = displayValue.innerText;
+
+
+let ops = document.querySelectorAll('.ops');
+
+
+let numBtns = document.querySelectorAll(".num-btns");
+numBtns.forEach(btn => btn.addEventListener("click", showNumbers));
+
+// let displayValue = numDisplay.innerText;
+
+// let valueNum1 = multiplyBtn.addEventListener('click', saveValue);
+
+// console.log()
