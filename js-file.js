@@ -28,16 +28,26 @@ function operate(op, num1, num2) {
     }
 }
 
-
+//display the input
 function showNumbers(e) {
-    let numDisplay = document.querySelector(".display")
+    // let numDisplay = document.querySelector(".display")
     console.log(numDisplay.innerText)
-    return numDisplay.innerText += e.target.innerText
+    numDisplay.innerText += e.target.innerText
 }
-//let numDisplay = document.querySelector(".display")
+
+//clear display
+function clear() {
+    numDisplay.innerText = '';
+}
+
+let clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', clear);
 
 
-let btns = document.querySelectorAll(".num-buttons")
+let btns = document.querySelectorAll(".num-buttons");
 btns.forEach(btn => btn.addEventListener("click", showNumbers));
-//console.log(displayValue)
+
+let numDisplay = document.querySelector(".display");
 let displayValue = numDisplay.innerText;
+
+console.log(displayValue);
