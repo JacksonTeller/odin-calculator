@@ -31,7 +31,7 @@ function operate(op, num1, num2) {
 //display the input
 function showNumbers(e) {
     // let numDisplay = document.querySelector(".display")
-    console.log(numDisplay.innerText)
+    // console.log(numDisplay.innerText)
     numDisplay.innerText += e.target.innerText
 }
 
@@ -43,11 +43,22 @@ function clear() {
 let clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', clear);
 
+//main function
+function calculate() {
+    //take the first number
+    let num1 = displayValue.innerText;
+    //take the operator
 
-let btns = document.querySelectorAll(".num-buttons");
+    // let operator = 
+}
+
+let ops = document.querySelectorAll('.operators');
+
+
+let btns = document.querySelectorAll(".num-btns");
 btns.forEach(btn => btn.addEventListener("click", showNumbers));
 
 let numDisplay = document.querySelector(".display");
 let displayValue = numDisplay.innerText;
 
-console.log(displayValue);
+console.log(btns[0])
