@@ -27,3 +27,17 @@ function operate(op, num1, num2) {
       return divide(num1, num2);
     }
 }
+
+
+function showNumbers(e) {
+    let numDisplay = document.querySelector(".display")
+    console.log(numDisplay.innerText)
+    return numDisplay.innerText += e.target.innerText
+}
+//let numDisplay = document.querySelector(".display")
+
+
+let btns = document.querySelectorAll(".num-buttons")
+btns.forEach(btn => btn.addEventListener("click", showNumbers));
+//console.log(displayValue)
+let displayValue = numDisplay.innerText;
