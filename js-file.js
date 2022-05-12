@@ -46,27 +46,30 @@ clearBtn.addEventListener('click', clear);
 //main function
 
 function takeOpAndNum1(e) {
-  displArr['num1'] = numDisplay.innerText;
+  displArr['num1'] = Number(numDisplay.innerText);
   displArr['operator'] = e.target.className.slice(4);
   clear();
   console.log(displArr);
 }
 
 function equalsTo() {
-  displArr['num2'] = numDisplay.innerText;
+  displArr['num2'] = Number(numDisplay.innerText);
   console.log(displArr);
   numDisplay.innerText = operate(displArr['operator'], displArr['num1'], displArr['num2']);
   console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
 }
 
 //Step1: take the first number and operator
+let ops = document.querySelectorAll('.ops');
 let multiplyBtn = document.querySelector('.multiply');
 let numDisplay = document.querySelector('.display');
 let equalBtn = document.querySelector('.equal');
 
 const displArr = {};
 console.log(displArr);
-multiplyBtn.addEventListener('click', takeOpAndNum1);
+ops.forEach(op => op.addEventListener('click', takeOpAndNum1));
+
+// multiplyBtn.addEventListener('click', takeOpAndNum1);
 
 //Step2: take the second number and show the answer
 equalBtn.addEventListener('click', equalsTo);
@@ -76,7 +79,6 @@ equalBtn.addEventListener('click', equalsTo);
 // let num2 = displayValue.innerText;
 
 
-let ops = document.querySelectorAll('.ops');
 
 
 let numBtns = document.querySelectorAll('.num-btns');
