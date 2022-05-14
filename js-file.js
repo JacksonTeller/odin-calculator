@@ -17,6 +17,9 @@ function divide(num1, num2) {
 
 //take an operator and two number and call for appropriate function above
 function operate(op, num1, num2) {
+    // if (num2 === 0 && op === 'divide') {
+    //   return numDisplay.innerText = `Don't... -_-`;
+    // } else 
     if (op === 'add') {
       return add(num1, num2);
     } else if (op === 'subtract') {
@@ -33,6 +36,9 @@ function showNumbers(e) {
   if (displArr['operator'] === 'equal') {
     numDisplay.innerText = '';
     displArr['operator'] = undefined;
+  } else if (displArr['clean-display'] === 'yes') {
+    numDisplay.innerText = '';
+    displArr['clean-display'] = undefined;
   }
     numDisplay.innerText += e.target.innerText;
 }
@@ -40,6 +46,10 @@ function showNumbers(e) {
 //clear display
 function clear() {
     numDisplay.innerText = '';
+    displArr['num1'] = undefined;
+    displArr['operator'] = undefined;
+    displArr['num2'] = undefined;
+    displArr['clean-display'] = undefined;
 }
 
 let clearBtn = document.querySelector('.clear');
@@ -51,8 +61,9 @@ function takeOpAndNum1(e) {
   if (displArr['operator'] != undefined) {
     displArr['num2'] = Number(numDisplay.innerText);
     console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
-    displArr['num1'] = operate(displArr['operator'], displArr['num1'], displArr['num2']);
+    displArr['num1'] = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
     displArr['operator'] = e.target.className.slice(4);
+    numDisplay.innerText = displArr['num1'];
   } else if (displArr['num1'] === undefined) {
     displArr['num1'] = Number(numDisplay.innerText);
     displArr['operator'] = e.target.className.slice(4);
@@ -60,23 +71,30 @@ function takeOpAndNum1(e) {
     displArr['num2'] = Number(numDisplay.innerText);
     displArr['operator'] = e.target.className.slice(4);
   }
+  displArr['clean-display'] = 'yes';
   // displArr['num1'] = Number(numDisplay.innerText);
   // displArr['operator'] = e.target.className.slice(4);
-  clear();
+  // numDisplay.innerText = '';
   console.log(displArr);
+  checkDisplay();
 }
 
 function equalsTo() {
-  // if (displArr['num2'] === undefined) {
-  //   displArr['num2'] = Number(numDisplay.innerText);
-  // }
   displArr['num2'] = Number(numDisplay.innerText);
-  console.log(displArr);
-  numDisplay.innerText = operate(displArr['operator'], displArr['num1'], displArr['num2']);
-  console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
-  displArr['num1'] = undefined;
+  console.log(displArr['operator'] === 'divide')
+  if (displArr['num2'] === 0 && displArr['operator'] === 'divide') {
+    numDisplay.innerText = `Don't... -_-`;
+    displArr['num1'] = undefined;
+    displArr['num2'] = undefined;
+  } else {
+    numDisplay.innerText = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
+    console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
+    displArr['num1'] = undefined;
+    displArr['num2'] = undefined;
+  }
   displArr['operator'] = 'equal';
-  displArr['num2'] = undefined;
+  console.log(displArr);
+  checkDisplay();
 }
 
 //Step1: take the first number and operator
@@ -95,12 +113,6 @@ ops.forEach(op => op.addEventListener('click', takeOpAndNum1));
 equalBtn.addEventListener('click', equalsTo);
 
 
-
-// let num2 = displayValue.innerText;
-
-
-
-
 let numBtns = document.querySelectorAll('.num-btns');
 numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
 
@@ -108,4 +120,8 @@ numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
 
 // let valueNum1 = multiplyBtn.addEventListener('click', saveValue);
 
-// console.log()
+function checkDisplay() {
+  if (numDisplay.innerText === 'undefined' || numDisplay.innerText === NaN) {
+    numDisplay.innerText = '';
+  }
+}
