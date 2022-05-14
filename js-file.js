@@ -122,8 +122,19 @@ numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
 
 // let valueNum1 = multiplyBtn.addEventListener('click', saveValue);
 
+//check display for unwanted messages
 function checkDisplay() {
   if (numDisplay.innerText === 'undefined' || numDisplay.innerText === 'NaN') {
     numDisplay.innerText = '';
+  }
+}
+
+//decimals
+let point = document.querySelector('.point');
+point.addEventListener('click', decimals);
+
+function decimals(e) {
+  if (!(numDisplay.innerText).includes('.')) {
+    numDisplay.innerText += e.target.innerText;
   }
 }
