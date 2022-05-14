@@ -82,7 +82,9 @@ function takeOpAndNum1(e) {
 function equalsTo() {
   displArr['num2'] = Number(numDisplay.innerText);
   console.log(displArr['operator'] === 'divide')
-  if (displArr['num2'] === 0 && displArr['operator'] === 'divide') {
+  if (displArr['num1'] === undefined) {
+    numDisplay.innerText = '';
+  } else if (displArr['num2'] === 0 && displArr['operator'] === 'divide') {
     numDisplay.innerText = `Don't... -_-`;
     displArr['num1'] = undefined;
     displArr['num2'] = undefined;
@@ -121,7 +123,7 @@ numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
 // let valueNum1 = multiplyBtn.addEventListener('click', saveValue);
 
 function checkDisplay() {
-  if (numDisplay.innerText === 'undefined' || numDisplay.innerText === NaN) {
+  if (numDisplay.innerText === 'undefined' || numDisplay.innerText === 'NaN') {
     numDisplay.innerText = '';
   }
 }

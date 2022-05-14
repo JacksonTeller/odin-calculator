@@ -1,3 +1,3 @@
 Here I write tasks to solve in the code.
 
-Display a special message when divided by 0
+Eliminate error when pressing = sign with no values
