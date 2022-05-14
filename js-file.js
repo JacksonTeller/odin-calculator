@@ -30,9 +30,11 @@ function operate(op, num1, num2) {
 
 //display the input
 function showNumbers(e) {
-    // let numDisplay = document.querySelector('.display')
-    // console.log(numDisplay.innerText)
-    numDisplay.innerText += e.target.innerText
+  if (displArr['operator'] === 'equal') {
+    numDisplay.innerText = '';
+    displArr['operator'] = undefined;
+  }
+    numDisplay.innerText += e.target.innerText;
 }
 
 //clear display
@@ -46,22 +48,40 @@ clearBtn.addEventListener('click', clear);
 //main function
 
 function takeOpAndNum1(e) {
-  displArr['num1'] = Number(numDisplay.innerText);
-  displArr['operator'] = e.target.className.slice(4);
+  if (displArr['operator'] != undefined) {
+    displArr['num2'] = Number(numDisplay.innerText);
+    console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
+    displArr['num1'] = operate(displArr['operator'], displArr['num1'], displArr['num2']);
+    displArr['operator'] = e.target.className.slice(4);
+  } else if (displArr['num1'] === undefined) {
+    displArr['num1'] = Number(numDisplay.innerText);
+    displArr['operator'] = e.target.className.slice(4);
+  } else if (displArr['num2'] === undefined) {
+    displArr['num2'] = Number(numDisplay.innerText);
+    displArr['operator'] = e.target.className.slice(4);
+  }
+  // displArr['num1'] = Number(numDisplay.innerText);
+  // displArr['operator'] = e.target.className.slice(4);
   clear();
   console.log(displArr);
 }
 
 function equalsTo() {
+  // if (displArr['num2'] === undefined) {
+  //   displArr['num2'] = Number(numDisplay.innerText);
+  // }
   displArr['num2'] = Number(numDisplay.innerText);
   console.log(displArr);
   numDisplay.innerText = operate(displArr['operator'], displArr['num1'], displArr['num2']);
   console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
+  displArr['num1'] = undefined;
+  displArr['operator'] = 'equal';
+  displArr['num2'] = undefined;
 }
 
 //Step1: take the first number and operator
 let ops = document.querySelectorAll('.ops');
-let multiplyBtn = document.querySelector('.multiply');
+// let multiplyBtn = document.querySelector('.multiply');
 let numDisplay = document.querySelector('.display');
 let equalBtn = document.querySelector('.equal');
 
