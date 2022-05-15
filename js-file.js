@@ -138,3 +138,11 @@ function decimals(e) {
     numDisplay.innerText += e.target.innerText;
   }
 }
+
+//backspace
+let backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', erase);
+
+function erase() {
+  numDisplay.innerText = (numDisplay.innerText).slice(0,-1);
+}
