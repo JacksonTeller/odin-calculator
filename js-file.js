@@ -43,6 +43,19 @@ function showNumbers(e) {
     numDisplay.innerText += e.target.innerText;
 }
 
+function showKeyNumbers(e) {
+  const keyNum = document.querySelector(`.num-btns[data-key="${e.keyCode}"]`);
+  console.log(keyNum.innerText)
+  if (displArr['operator'] === 'equal') {
+    numDisplay.innerText = '';
+    displArr['operator'] = undefined;
+  } else if (displArr['clean-display'] === 'yes') {
+    numDisplay.innerText = '';
+    displArr['clean-display'] = undefined;
+  }
+    numDisplay.innerText += keyNum.innerText;
+}
+
 //clear display
 function clear() {
     numDisplay.innerText = '';
@@ -117,6 +130,7 @@ equalBtn.addEventListener('click', equalsTo);
 
 let numBtns = document.querySelectorAll('.num-btns');
 numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
+window.addEventListener('keydown', showKeyNumbers);
 
 // let displayValue = numDisplay.innerText;
 
