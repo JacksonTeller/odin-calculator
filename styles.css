@@ -6,21 +6,25 @@ body {
 }
 
 .label {
+    border-radius: 4px 4px 0px 0px;
     display: flex;
     height: 40px;
     width: 430px;
     align-items: center;
     justify-content: center;
     background-color: blueviolet;
+    font-size: 32px;
 }
 
 .display {
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     height: 70px;
     width: 430px;
     background-color: rgba(203, 176, 227, 0.958);
+    font-size: 48px;
 }
 
 .all-buttons {
@@ -34,7 +38,7 @@ body {
     width: 350px;
     justify-content: center;
     flex-wrap: wrap;
-    
+
 }
 
 .row-1, .row-2, .row-3, .row-4 {
@@ -46,6 +50,7 @@ body {
     height: 100px;
     width: 100px;
     margin: 5px;
+    font-size: 36px;
 }
 
 .operators {
@@ -55,28 +60,36 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
+    
 }
 
 .backspace {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
     height: 40px;
     width: 90px;
     margin: 5px;
+    font-size: 24px;
 }
 
 .multiply, .divide, .subtract {
     height: 55px;
     width: 90px;
     margin: 5px;
+    font-size: 32px;
 }
 
 .add {
     height: 100px;
     width: 90px;
     margin: 5px;
+    font-size: 36px;
 }
 
 .equal {
     height: 75px;
     width: 90px;
     margin: 5px;
+    font-size: 36px;
 }
