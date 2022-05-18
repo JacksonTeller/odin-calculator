@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    display: flex;
+    height: 40px;
+    width: 430px;
+    align-items: center;
+    justify-content: center;
+    background-color: blueviolet;
+}
+
+.display {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 70px;
+    width: 430px;
+    background-color: rgba(203, 176, 227, 0.958);
+}
+
+.all-buttons {
+    display: flex;
+}
+
+.num-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    width: 350px;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.row-1, .row-2, .row-3, .row-4 {
+    display: flex;
+    justify-content: center;
+}
+
+.num-btns, .point, .clear {
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+}
+
+.operators {
+    display: flex;
+    height: 450px;
+    width: 110px;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.backspace {
+    height: 40px;
+    width: 90px;
+    margin: 5px;
+}
+
+.multiply, .divide, .subtract {
+    height: 55px;
+    width: 90px;
+    margin: 5px;
+}
+
+.add {
+    height: 100px;
+    width: 90px;
+    margin: 5px;
+}
+
+.equal {
+    height: 75px;
+    width: 90px;
+    margin: 5px;
+}
