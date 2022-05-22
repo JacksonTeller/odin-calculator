@@ -9,6 +9,8 @@ body {
 
 .label {
     border-radius: 4px 4px 0px 0px;
+    border: 2px solid hsl(228, 36%, 27%);
+    border-bottom: 0px;
     margin-top: 50px;
     display: flex;
     height: 40px;
@@ -21,6 +23,7 @@ body {
 
 .display {
     border-radius: 0px 0px 4px 4px;
+    border: 2px solid hsl(228, 36%, 27%);
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -41,7 +44,6 @@ body {
     width: 350px;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .row-1, .row-2, .row-3, .row-4 {
@@ -50,10 +52,29 @@ body {
 }
 
 .num-btns, .point, .clear {
+    background-color:hsl(180,94%,85%);
+    border-radius: 4px;
+    border: 2px solid hsl(228, 36%, 27%);
     height: 100px;
     width: 100px;
     margin: 5px;
     font-size: 36px;
+}
+
+.num-btns:active, .point:active {
+    transform: scale(0.95);
+}
+
+.clear:hover {
+    background-color: rgb(245, 182, 167);
+}
+
+.clear:active {
+    transform: scale(0.95);
+}
+
+.num-btns:hover, .point:hover {
+    background-color: hsl(169,94%,95%);
 }
 
 .operators {
@@ -64,6 +85,20 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     
+}
+
+.ops, .backspace, .equal {
+    background-color:hsl(150,94%,85%);
+    border-radius: 4px;
+    border: 2px solid hsl(228, 36%, 27%);
+}
+
+.ops:hover, .backspace:hover, .equal:hover {
+    background-color: hsl(169,94%,95%);
+}
+
+.ops:active, .backspace:active, .equal:active {
+    transform: scale(0.95);
 }
 
 .backspace {

@@ -112,7 +112,6 @@ function equalsTo() {
   } else {
     let answer = operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4);
     if (answer.length >= 14) {
-      // let overflowMsg = `Sorry, Dave. I can't do that.`
       numDisplay.innerText = `Sorry, Dave...`
     } else {
       numDisplay.innerText = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
