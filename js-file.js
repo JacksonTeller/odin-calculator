@@ -17,9 +17,6 @@ function divide(num1, num2) {
 
 //take an operator and two number and call for appropriate function above
 function operate(op, num1, num2) {
-    // if (num2 === 0 && op === 'divide') {
-    //   return numDisplay.innerText = `Don't... -_-`;
-    // } else 
     if (op === 'add') {
       return add(num1, num2);
     } else if (op === 'subtract') {
@@ -49,7 +46,6 @@ function showNumbers(e) {
 
 function showKeyNumbers(e) {
   const keyNum = document.querySelector(`.num-btns[data-key="${e.keyCode}"]`);
-  console.log(keyNum.innerText)
   if (displArr['operator'] === 'equal') {
     numDisplay.innerText = '';
     displArr['operator'] = undefined;
@@ -59,6 +55,10 @@ function showKeyNumbers(e) {
   }
     numDisplay.innerText += keyNum.innerText;
 }
+
+let numBtns = document.querySelectorAll('.num-btns');
+numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
+window.addEventListener('keydown', showKeyNumbers);
 
 //clear display
 function clear() {
@@ -72,12 +72,10 @@ function clear() {
 let clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', clear);
 
-//main function
-
+//take numbers and find answers
 function takeOpAndNum(e) {
   if (displArr['operator'] != undefined) {
     displArr['num2'] = Number(numDisplay.innerText);
-    console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
     if (displArr['num1'] === undefined) {
       displArr['num1'] = Number(numDisplay.innerText);
     } else {
@@ -93,16 +91,11 @@ function takeOpAndNum(e) {
     displArr['operator'] = e.target.className.slice(4);
   }
   displArr['clean-display'] = 'yes';
-  // displArr['num1'] = Number(numDisplay.innerText);
-  // displArr['operator'] = e.target.className.slice(4);
-  // numDisplay.innerText = '';
-  console.log(displArr);
   checkDisplay();
 }
 
 function equalsTo() {
   displArr['num2'] = Number(numDisplay.innerText);
-  console.log(displArr['operator'] === 'divide')
   if (displArr['num1'] === undefined) {
     numDisplay.innerText = '';
   } else if (displArr['num2'] === 0 && displArr['operator'] === 'divide') {
@@ -116,38 +109,22 @@ function equalsTo() {
     } else {
       numDisplay.innerText = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
     }
-    console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
     displArr['num1'] = undefined;
     displArr['num2'] = undefined;
   }
   displArr['operator'] = 'equal';
-  console.log(displArr);
   checkDisplay();
 }
 
-//Step1: take the first number and operator
+
 let ops = document.querySelectorAll('.ops');
-// let multiplyBtn = document.querySelector('.multiply');
 let numDisplay = document.querySelector('.display');
 let equalBtn = document.querySelector('.equal');
 
 const displArr = {};
-console.log(displArr);
 ops.forEach(op => op.addEventListener('click', takeOpAndNum));
 
-// multiplyBtn.addEventListener('click', takeOpAndNum);
-
-//Step2: take the second number and show the answer
 equalBtn.addEventListener('click', equalsTo);
-
-
-let numBtns = document.querySelectorAll('.num-btns');
-numBtns.forEach(btn => btn.addEventListener('click', showNumbers));
-window.addEventListener('keydown', showKeyNumbers);
-
-// let displayValue = numDisplay.innerText;
-
-// let valueNum1 = multiplyBtn.addEventListener('click', saveValue);
 
 //check display for unwanted messages
 function checkDisplay() {
