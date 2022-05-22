@@ -39,8 +39,12 @@ function showNumbers(e) {
   } else if (displArr['clean-display'] === 'yes') {
     numDisplay.innerText = '';
     displArr['clean-display'] = undefined;
-  }
+  } 
+  if ((numDisplay.innerText).length >= 14) {
+    return;  
+  } else {
     numDisplay.innerText += e.target.innerText;
+  }
 }
 
 function showKeyNumbers(e) {
@@ -70,11 +74,15 @@ clearBtn.addEventListener('click', clear);
 
 //main function
 
-function takeOpAndNum1(e) {
+function takeOpAndNum(e) {
   if (displArr['operator'] != undefined) {
     displArr['num2'] = Number(numDisplay.innerText);
     console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
-    displArr['num1'] = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
+    if (displArr['num1'] === undefined) {
+      displArr['num1'] = Number(numDisplay.innerText);
+    } else {
+      displArr['num1'] = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
+    }
     displArr['operator'] = e.target.className.slice(4);
     numDisplay.innerText = displArr['num1'];
   } else if (displArr['num1'] === undefined) {
@@ -102,7 +110,13 @@ function equalsTo() {
     displArr['num1'] = undefined;
     displArr['num2'] = undefined;
   } else {
-    numDisplay.innerText = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
+    let answer = operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4);
+    if (answer.length >= 14) {
+      // let overflowMsg = `Sorry, Dave. I can't do that.`
+      numDisplay.innerText = `Sorry, Dave...`
+    } else {
+      numDisplay.innerText = Number(operate(displArr['operator'], displArr['num1'], displArr['num2']).toFixed(4));
+    }
     console.log(operate(displArr['operator'], displArr['num1'], displArr['num2']));
     displArr['num1'] = undefined;
     displArr['num2'] = undefined;
@@ -120,9 +134,9 @@ let equalBtn = document.querySelector('.equal');
 
 const displArr = {};
 console.log(displArr);
-ops.forEach(op => op.addEventListener('click', takeOpAndNum1));
+ops.forEach(op => op.addEventListener('click', takeOpAndNum));
 
-// multiplyBtn.addEventListener('click', takeOpAndNum1);
+// multiplyBtn.addEventListener('click', takeOpAndNum);
 
 //Step2: take the second number and show the answer
 equalBtn.addEventListener('click', equalsTo);
